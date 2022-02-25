@@ -2,8 +2,7 @@ import React from "react";
 import { useGlobalContext } from "../context";
 
 const CartItem = (props) => {
-  const { remove, increase, decrease, toggleAmount } =
-    useGlobalContext();
+  const { remove, toggleAmount } = useGlobalContext();
   return (
     <article className="cart-item">
       <img src={props.img} alt={props.title} />
