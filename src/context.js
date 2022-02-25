@@ -1,4 +1,9 @@
-import React, { useContext, useReducer, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import cartItems from "./components/Data";
 import Reducer from "./components/Reducer";
 
@@ -29,6 +34,10 @@ export const AppProvider = (props) => {
   const decrease = (id) => {
     dispatch({ type: "DECREASE", payload: id });
   };
+
+  useEffect(() => {
+    dispatch({ type: "GEt_TOTALS" });
+  }, [state.cart]);
 
   return (
     <AppContext.Provider
