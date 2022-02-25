@@ -1,11 +1,7 @@
-import React, {
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import cartItems from "./components/Data";
 import Reducer from "./components/Reducer";
+const url = "https://course-api.com/react-useReducer-cart-project";
 
 const AppContext = React.createContext();
 
@@ -34,6 +30,17 @@ export const AppProvider = (props) => {
   const decrease = (id) => {
     dispatch({ type: "DECREASE", payload: id });
   };
+
+  const fetchData = async () => {
+    dispatch({ type: "LOADING" });
+    const response = await fetch(url);
+    const cart = await response.json();
+    dispatch({ type: "DISPLAY_ITEMS", payload: cart });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   useEffect(() => {
     dispatch({ type: "GEt_TOTALS" });
