@@ -38,6 +38,10 @@ export const AppProvider = (props) => {
     dispatch({ type: "DISPLAY_ITEMS", payload: cart });
   };
 
+  const toggleAmount = (id, type) => {
+    dispatch({ type: "TOGGLE_AMOUNT", payload: { id, type } });
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -48,7 +52,14 @@ export const AppProvider = (props) => {
 
   return (
     <AppContext.Provider
-      value={{ ...state, clearCart, remove, increase, decrease }}
+      value={{
+        ...state,
+        clearCart,
+        remove,
+        increase,
+        decrease,
+        toggleAmount,
+      }}
     >
       {props.children}
     </AppContext.Provider>
